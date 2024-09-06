@@ -1,11 +1,19 @@
-FROM python:3.12-slim 
+FROM python:3.12-slim AS builder
 
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+COPY pyproject.toml requirements.txt ./
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir wheels -r requirements.txt
 
-COPY src/mysite mysite
+COPY src src
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir wheels .
+
+
+FROM python:3.12-slim AS runner
+
+COPY --from=builder app/wheels /wheels
+RUN pip install --no-cache /wheels/* && rm -rf /wheels
+
 
 EXPOSE 8000
 
