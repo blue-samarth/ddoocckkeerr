@@ -1,0 +1,21 @@
+services:
+  backend:
+    image: mysite-backend
+    container_name: mysite-backend
+    pull_policy: never
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: runner
+    ports:
+      - 8000:8000
+    
+  frontend:
+    image: mysite-frontend
+    container_name: mysite-frontend
+    pull_policy: never
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
