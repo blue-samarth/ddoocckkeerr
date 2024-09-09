@@ -9,6 +9,8 @@ services:
       target: runner
     ports:
       - 8000:8000
+    env_file:
+      - ./backend/.env
     
   frontend:
     image: mysite-frontend
@@ -19,3 +21,17 @@ services:
       dockerfile: Dockerfile
     ports:
       - 80:80
+
+  mongodb:
+    image: mongo
+    container_name: mysite-mongodb
+    volumes:
+      - mongodb-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    # env_file:
+    #   - ./mongodb/.env
+    
+volumes:
+  mongodb-data:
