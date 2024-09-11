@@ -1,6 +1,6 @@
 from fastapi import FastAPI , HTTPException
 from pydantic import BaseModel , Field
-# import uvicorn
+import uvicorn
 from uuid import UUID , uuid4
 from fastapi.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -61,3 +61,6 @@ async def delete_todo(todo_id : UUID):
         #     todos.pop(i)
         #     return {"message" : "Todo item deleted successfully"}
     return {"message" : "Todo item deleted successfully"}
+
+if __name__ == "__main__":
+    uvicorn.run(app , host="0.0.0.0" , port=8000)
