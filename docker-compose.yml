@@ -11,6 +11,8 @@ services:
       - 8000:8000
     env_file:
       - ./backend/.env
+    depends_on:
+      - mongodb
     
   frontend:
     image: mysite-frontend
@@ -32,6 +34,20 @@ services:
       # MONGO_INITDB_ROOT_PASSWORD: example
     env_file:
       - ./mongodb/.env
+    
+  mongo-express:
+    image: mongo-express
+    container_name: mysite-mongo-express
+    ports:
+      - 8081:8081
+    # environment:
+    #   ME_CONFIG_MONGODB_SERVER: mongodb
+    #   ME_CONFIG_MONGODB_ADMINUSERNAME: root
+    #   ME_CONFIG_MONGODB_ADMINPASSWORD: example
+    env_file:
+      - ./mongo-express/.env
+    depends_on:
+      - mongodb
     
 volumes:
   mongodb-data:
