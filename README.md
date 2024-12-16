@@ -4,7 +4,6 @@
 
 ToDo-Dockr is a modern, full-stack task management application designed to simplify your productivity workflow. Built with cutting-edge technologies, this application demonstrates a robust, scalable approach to web development.
 
-![Project Banner](path/to/your/banner-image.png)
 
 ## ✨ Key Features
 
@@ -48,12 +47,14 @@ todo-dockr/
 │
 ├── frontend/
 │   ├── Dockerfile
-│   └── index.html
+|   └── static/
+│       └── index.html
 │
 ├── backend/
 │   ├── Dockerfile
-│   ├── main.py
-│   └── requirements.txt
+|   └── src/mysite/
+│       ├── __init__.py
+│       └── main.py
 │
 ├── mongodb/
 │   └── .env
@@ -76,8 +77,7 @@ todo-dockr/
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/yourusername/todo-dockr.git
-   cd todo-dockr
+   git clone https://github.com/blue-samarth/ddoocckkeerr
    ```
 
 2. Configure Environment Variables
